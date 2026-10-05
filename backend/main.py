@@ -182,5 +182,13 @@ def optimize_route(config: OptimizeRequest):
     latest_optimization_result = result
     return result
 
+# Mount built frontend if dist exists (for single-container production deploys)
+dist_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "dist"))
+if os.path.exists(dist_path):
+    from fastapi.staticfiles import StaticFiles
+    app.mount("/", StaticFiles(directory=dist_path, html=True), name="static")
+
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
+
