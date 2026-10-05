@@ -1,0 +1,7 @@
+Node_1,Node_2,Distance,Method
+1,2,76.5,QAOA
+2,3,47.8,QAOA
+3,4,12.3,QAOA
+4,5,34.5,QAOA
+5,1,98.2,QAOA
+Total_Distance,,,232
